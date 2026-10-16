@@ -2513,7 +2513,9 @@ mod tests {
         use egui_kittest::{Harness, kittest::Queryable};
         let values = json!({"memoryUsageMb":50000}).as_object().unwrap().clone();
         assert!(!field_visible("performance", &values, "memoryUsageMb", ""));
-        let mut h = Harness::builder().with_size(vec2(680.0, 350.0)).build_ui_state(|ui, values| memory_usage_row(ui, values), values);
+        let mut h = Harness::builder()
+            .with_size(vec2(680.0, 350.0))
+            .build_ui_state(|ui, values| section_fields(ui, "performance", values, &["memoryUsageMb".into()], crate::i18n::Lang::EN, None, ""), values);
         h.run_steps(2);
         h.get_by_label("Memory Usage");
         h.get_by_label("Per-document RAM limit (MB)");
