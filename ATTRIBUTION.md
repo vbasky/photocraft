@@ -117,3 +117,15 @@ next to the files:
 | `corpus/pixls/` (11 files) | Real camera raws, one per decode path: Canon PowerShot SX50 HS (CR2 and its DNG conversion), Nikon D3 uncompressed NEF and Z6 paired 12/14-bit lossy and packed NEFs, Sony DSC-RX0 cRAW ARW, Panasonic DC-G9 high-res RW2, Olympus E-1 GRBG ORF, plus the E-5 packed ORF as the documented known-unsupported case. Per file (each CC0, per its database entry): [IMG_4059.CR2](https://raw.pixls.us/data/Canon/PowerShot%20SX50%20HS/IMG_4059.CR2), [CRW_4061.DNG](https://raw.pixls.us/data/Canon/PowerShot%20SX50%20HS/CRW_4061.DNG), [JD1_8203.NEF](https://raw.pixls.us/data/Nikon/D3/JD1_8203.NEF), [DSC00009.ARW](https://raw.pixls.us/data/Sony/DSC-RX0/DSC00009.ARW), [P1000475.RW2](https://raw.pixls.us/data/Panasonic/DC-G9/P1000475.RW2), [E_1__C106743_gredos.ORF](https://raw.pixls.us/data/Olympus/E-1/E_1__C106743_gredos.ORF), [_7061961_copy.ORF](https://raw.pixls.us/data/Olympus/E-5/_7061961_copy.ORF), [DSC_0750.NEF](https://raw.pixls.us/data/Nikon/Z%206/DSC_0750.NEF), [DSC_0751.NEF](https://raw.pixls.us/data/Nikon/Z%206/DSC_0751.NEF), [DSC_0753.NEF](https://raw.pixls.us/data/Nikon/Z%206/DSC_0753.NEF), [DSC_0754.NEF](https://raw.pixls.us/data/Nikon/Z%206/DSC_0754.NEF) | The photographers of the pixls.us raw samples database | [raw.pixls.us](https://raw.pixls.us) `data/`, fetched per [xtask/src/corpus_pins.rs](xtask/src/corpus_pins.rs) | CC0 / public domain, per file as linked |
 
 Files copied into `corpus/` by hand (tiff, exr, raw) must be MIT, BSD or CC0.
+
+## Issue-review UI captures (2026-10-17)
+
+Original offscreen captures of baseline and updated widgets, using synthetic documents and example paths. Existing brand marks retain their existing brand license.
+
+| Path | Title | Author | Source | License |
+|---|---|---|---|---|
+| `docs/screenshots/issue-fixes-20261017/6560-{before,after}.png` | Tool preset export review captures | PhotoCraft contributors | PhotoCraft `snapshot` example; synthetic inputs | MIT OR Apache-2.0 (licenses alongside captures; brand marks excluded) |
+| `docs/screenshots/issue-fixes-20261017/6610-{before,after}.png` | Missing recent files review captures | PhotoCraft contributors | PhotoCraft `snapshot` example; synthetic inputs | MIT OR Apache-2.0 (licenses alongside captures; brand marks excluded) |
+| `docs/screenshots/issue-fixes-20261017/6498-{before,after}.png` | Layer comp ordering review captures | PhotoCraft contributors | PhotoCraft `snapshot` example; synthetic inputs | MIT OR Apache-2.0 (licenses alongside captures; brand marks excluded) |
+| `docs/screenshots/issue-fixes-20261017/6546-{before,after}.png` | Memory Usage explanation review captures | PhotoCraft contributors | PhotoCraft `snapshot` example; synthetic inputs | MIT OR Apache-2.0 (licenses alongside captures; brand marks excluded) |
+| `docs/screenshots/issue-fixes-20261017/6559-{before,after}.png` | Actions folder review captures | PhotoCraft contributors | PhotoCraft `snapshot` example; synthetic inputs | MIT OR Apache-2.0 (licenses alongside captures; brand marks excluded) |
