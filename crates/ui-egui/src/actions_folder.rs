@@ -162,9 +162,11 @@ mod tests {
         let fields = app.ui.dialog_mut(id).unwrap().fields.clone();
         let ctx = egui::Context::default();
         ctx.data_mut(|d| d.insert_temp(egui::Id::new(REQUEST), true));
-        let _ = ctx.run_ui(Default::default(), |ui| {
+        ctx.run_ui(Default::default(), |ui| {
             preferences(&mut app, ui, &fields);
-        });
+        })
+        .textures_delta
+        .clear();
         app.poll_file_dialog(&ctx, None);
         app.poll_file_dialog(&ctx, None);
         assert!(matches!(&asked.borrow()[0], crate::file_dialog::FileDialogRequest::Folder { .. }));
@@ -172,15 +174,19 @@ mod tests {
         assert_eq!(fields["values"]["fileHandling"]["actionsFolder"], "/studio/Actions");
         assert!(app.session.prefs().file_handling.actions_folder.is_empty(), "Cancel must still discard the choice");
         ctx.data_mut(|d| d.insert_temp(egui::Id::new(REQUEST), false));
-        let _ = ctx.run_ui(Default::default(), |ui| {
+        ctx.run_ui(Default::default(), |ui| {
             preferences(&mut app, ui, &fields);
-        });
+        })
+        .textures_delta
+        .clear();
         assert_eq!(*opened.borrow(), ["/studio/Actions"]);
         app.ui.dialog_mut(id).unwrap().fields.insert("values".into(), json!(42));
         ctx.data_mut(|d| d.insert_temp(egui::Id::new(REQUEST), true));
-        let _ = ctx.run_ui(Default::default(), |ui| {
+        ctx.run_ui(Default::default(), |ui| {
             preferences(&mut app, ui, &fields);
-        });
+        })
+        .textures_delta
+        .clear();
         app.poll_file_dialog(&ctx, None);
         app.poll_file_dialog(&ctx, None);
         assert!(app.ui.status_error, "malformed dialog state is an error, not a panic");
