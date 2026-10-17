@@ -492,12 +492,14 @@ pub fn panel_menu(app: &mut PhotocraftApp, ui: &mut egui::Ui) {
         if !files.is_empty() {
             let mut picked = None;
             ui.menu_button(tl!("Actions Folder"), |ui| {
-                for path in &files {
-                    if ui.button(crate::file_open::display_name(path)).clicked() {
-                        picked = Some(path.clone());
-                        ui.close();
+                egui::ScrollArea::vertical().max_height(320.0).show(ui, |ui| {
+                    for path in &files {
+                        if ui.button(crate::file_open::display_name(path)).clicked() {
+                            picked = Some(path.clone());
+                            ui.close();
+                        }
                     }
-                }
+                });
             });
             if let Some(path) = picked {
                 ui.close();

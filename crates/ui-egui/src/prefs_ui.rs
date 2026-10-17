@@ -25,8 +25,6 @@ use crate::theme::{ThemeKind, Tokens};
 /// Shell runtime state for preferences, autosave and snapping (not serialised).
 #[derive(Default)]
 pub struct Runtime {
-    #[cfg(not(target_arch = "wasm32"))]
-    pub(crate) actions_folder: crate::actions_folder::Runtime,
     loaded: bool,
     /// Preferences revision last written to storage (or loaded from it).
     saved_rev: u64,
@@ -55,6 +53,8 @@ pub struct Runtime {
     /// Tool options as last remembered in the preferences (see `tool_memory`).
     pub(crate) tool_options: Option<crate::state::ToolOptions>,
     pub(crate) selected_tool: Option<crate::state::Tool>,
+    #[cfg(not(target_arch = "wasm32"))]
+    pub(crate) actions_folder: crate::actions_folder::Runtime,
 }
 
 /// The GPU canvas colours from Preferences › Transparency & Gamut.
@@ -449,11 +449,11 @@ pub fn tick(app: &mut PhotocraftApp, ctx: &egui::Context) {
     sync_appearance(app, ctx);
     crate::theme::set_ui_font_size(ctx, app.session.prefs().interface.ui_font_size);
     presets_store(app);
+    #[cfg(not(target_arch = "wasm32"))]
+    crate::actions_folder::tick(app, ctx);
     sync_tooltips(app, ctx);
     sync_animations(app, ctx);
     app.sync_recent();
-    #[cfg(not(target_arch = "wasm32"))]
-    crate::actions_folder::tick(app, ctx);
     if let Some(wait) = persist(app, ctx.input(|i| i.time)) {
         ctx.request_repaint_after(std::time::Duration::try_from_secs_f64(wait).unwrap_or_default());
     }
