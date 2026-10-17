@@ -30,7 +30,6 @@ fn scan(folder: &str) -> Option<Scan> {
         }
         let Ok(metadata) = std::fs::metadata(&path) else { continue };
         if metadata.is_file()
-            && metadata.len() <= 32 * 1024 * 1024
             && let Some(path) = path.to_str()
         {
             files.push(path.to_string());
